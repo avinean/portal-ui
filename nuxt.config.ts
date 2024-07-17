@@ -1,7 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@nuxtjs/strapi", "@nuxt/ui", '@vueuse/nuxt'],
+  modules: [
+    '@nuxtjs/strapi',
+    '@nuxt/ui',
+    '@vueuse/nuxt',
+    '@nuxt/eslint',
+    "@nuxt/image"
+  ],
   colorMode: {
     preference: 'light',
     fallback: 'light',
@@ -24,12 +30,16 @@ export default defineNuxtConfig({
     cookieName: 'strapi_jwt',
     devtools: true,
   },
-
+  image: {
+    strapi: {
+      baseURL: process.env.STRAPI_IMAGE_URL || 'http://localhost:1337/'
+    }
+  },
   extends: [
-    './blog',
-    './landing',
-    './core'
+    './apps/blog',
+    './apps/landing',
+    './apps/cms',
+    './apps/core',
   ],
-
-  compatibilityDate: '2024-07-05'
+  compatibilityDate: '2024-07-05',
 })
